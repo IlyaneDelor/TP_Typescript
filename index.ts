@@ -1,15 +1,32 @@
-import {Pokemon} from "./models";
+import {Pokemon,Move} from "./models";
 
 export const pokemon1 = new Pokemon({
     name: "Racaillou",
-    speed: 45
+    level:5,
+    health:23,
+    attack: 17,
+    defense: 19,
+    speed: 11
 });
 
 export const pokemon2 = new Pokemon({
     name: "Roucoul",
-    speed: 50,
+    level:6,
+    health:23,
+    attack:14,
+    defense:13,
+    speed: 15
 
 });
+
+
+export const Charge = new Move({
+    name:"Charge",
+    power:10,
+    accuracy:100
+
+});
+
 
  function getRandomInt(max:number) {
     return Math.floor(Math.random() * max);
@@ -36,11 +53,24 @@ export function speedTest(p1: Pokemon, p2: Pokemon) {
         }
 
 
-    } 
+    }
+} 
+
+
+    export function attackPokemon(p1:Pokemon,p2:Pokemon,move:Move){
+        const dmg = ((((p1.level * 2 / 5)+2) * p1.attack * move.power /  p2.defense) /50) +2 ;
+        console.log(Math.round(p2.health - dmg));
+
+        return Math.round(p2.health - dmg);
+    }
+
+
+  attackPokemon(pokemon1,pokemon2,Charge);
+  
   
 
 
-}
+
  
 
 
